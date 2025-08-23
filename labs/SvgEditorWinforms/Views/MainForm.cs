@@ -8,12 +8,12 @@ namespace SvgDemoWinForms
 {
     public partial class MainForm : Form
     {
-        public ShapeDrawingController ShapeDrawingController { get; } 
+        public ShapeDrawingController ShapeDrawingController { get; }
 
-        public JsonViewForm JsonView { get; } 
-        public SvgViewForm SvgView { get; } 
-        public TreeViewForm TreeView { get; } 
-        public LogViewForm LogView { get; } 
+        public JsonViewForm JsonView { get; }
+        public SvgViewForm SvgView { get; }
+        public TreeViewForm TreeView { get; }
+        public LogViewForm LogView { get; }
 
         public UndoController<DocumentModel> UndoController { get; }
         public DrawModeController DrawModeController { get; } = new();
@@ -171,7 +171,7 @@ namespace SvgDemoWinForms
 
         public IEnumerable<ToolStripMenuItem> AllMenuItems()
             => menuStrip1.Items.AllMenuItems();
-        
+
         private void DataModelController_ModelChanged(object? sender, EventArgs e)
         {
             pictureBox1.Invalidate();
@@ -256,7 +256,7 @@ namespace SvgDemoWinForms
                 Model.Remove(shape);
             }
             SelectionController.ClearSelection();
-            ModelChanged();            
+            ModelChanged();
         }
 
         private void selectAllToolStripMenuItem_Click(object sender, EventArgs e)
@@ -266,7 +266,7 @@ namespace SvgDemoWinForms
 
         public SvgDocument GetSvgDocument()
         {
-            return Model.ToSvgDocument ();
+            return Model.ToSvgDocument();
         }
 
         private void pictureBox1_MouseDown(object sender, MouseEventArgs e)
@@ -438,7 +438,7 @@ namespace SvgDemoWinForms
         {
             var filePath = Path.ChangeExtension(Path.GetTempFileName(), "svg");
             File.WriteAllText(filePath, GetXml());
-            var  psi = new ProcessStartInfo
+            var psi = new ProcessStartInfo
             {
                 FileName = filePath,
                 UseShellExecute = true
@@ -552,6 +552,11 @@ namespace SvgDemoWinForms
             // Add it to the models. 
             Model.Elements.Add(new CircularSaw());
             DocumentChanged();
+        }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
